@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Service Form - GIKI Central</title>
+  <style>
+    :root {
+      --primary-color: #800020;
+      --bg-color: #f9f3f3;
+      --text-color: #333;
+      --white: #ffffff;
+      --gray: #ccc;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #ffe6e6, #fce4ec);
+      color: var(--text-color);
+    }
+
+    .form-container {
+      max-width: 600px;
+      background: var(--white);
+      padding: 30px;
+      margin: 5% auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--primary-color);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid var(--gray);
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary-color);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #a52a2a;
+    }
+
+    .sample-button {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .sample-button a {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .popup {
+      display: none;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 30px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        margin: 10% 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Request a Service</h2>
+  <form id="serviceForm">
+    <label for="service">Choose Service</label>
+    <select id="service" name="service" required>
+      <option value="" disabled selected>Select a service</option>
+      <option value="cv">CV / Portfolio</option>
+      <option value="project">Project Help</option>
+      <option value="event">Event & Campaign Promotions</option>
+      <option value="news">Campus News</option>
+      <option value="custom">Custom Help</option>
+    </select>
+
+    <div id="cvFields" class="hidden">
+      <label>Name</label>
+      <input type="text" name="name">
+
+      <label>WhatsApp Number</label>
+      <input type="text" name="whatsapp">
+
+      <label>Email</label>
+      <input type="email" name="email">
+    </div>
+
+    <div id="projectFields" class="hidden">
+      <label>Project Domain</label>
+      <input type="text" name="project_domain">
+
+      <label>Required Help</label>
+      <textarea name="required_help" rows="4"></textarea>
+
+      <label>Email</label>
+      <input type="email" name="email">
+
+      <label>Phone Number</label>
+      <input type="text" name="phone">
+    </div>
+
+    <div id="eventFields" class="hidden">
+      <label>Event Name</label>
+      <input type="text" name="event_name">
+
+      <label>Society Name</label>
+      <input type="text" name="society_name">
+
+      <label>Phone Number for Ticketing</label>
+      <input type="text" name="ticket_phone">
+
+      <label>Email</label>
+      <input type="email" name="email">
+
+      <label>Details of Event</label>
+      <textarea name="event_details" rows="4"></textarea>
+    </div>
+
+    <div id="newsFields" class="hidden">
+      <label>Title</label>
+      <input type="text" name="news_title">
+
+      <label>Issue</label>
+      <textarea name="issue" rows="4"></textarea>
+
+      <label>Email (Optional)</label>
+      <input type="email" name="news_email">
+
+      <label>Phone Number (Optional)</label>
+      <input type="text" name="news_phone">
+    </div>
+
+    <div id="customFields" class="hidden">
+      <label>Your Custom Request</label>
+      <textarea name="custom_request" rows="4" placeholder="Describe your request..."></textarea>
+    </div>
+
+    <button type="submit">Submit Request</button>
+
+    <div class="sample-button hidden" id="sampleLink">
+      <a href="#" target="_blank">View Samples</a>
+    </div>
+  </form>
+</div>
+
+<div id="popup" class="popup"></div>
+
+<script>
+  const serviceSelect = document.getElementById("service");
+  const form = document.getElementById("serviceForm");
+  const popup = document.getElementById("popup");
+  const sampleLink = document.getElementById("sampleLink");
+
+  const allFields = {
+    cv: document.getElementById("cvFields"),
+    project: document.getElementById("projectFields"),
+    event: document.getElementById("eventFields"),
+    news: document.getElementById("newsFields"),
+    custom: document.getElementById("customFields"),
+  };
+
+  serviceSelect.addEventListener("change", (e) => {
+    const value = e.target.value;
+
+    Object.keys(allFields).forEach((key) => {
+      allFields[key].classList.add("hidden");
+    });
+
+    if (value && allFields[value]) {
+      allFields[value].classList.remove("hidden");
+    }
+
+    sampleLink.classList.toggle("hidden", value !== "cv");
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const value = serviceSelect.value;
+
+    let message = "Thanks! You will be contacted soon.";
+    if (value === "project") {
+      message = "Your request will be posted soon on our freelance page.";
+    } else if (value === "event") {
+      message = "Your event promotion request has been received.";
+    } else if (value === "news") {
+      message = "Your campus news submission has been noted.";
+    }
+
+    popup.innerText = message;
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+      form.reset();
+      Object.values(allFields).forEach(f => f.classList.add("hidden"));
+      sampleLink.classList.add("hidden");
+    }, 3500);
+  });
+</script>
+
+</body>
+</html>

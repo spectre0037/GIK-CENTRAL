@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lost & Found</title>
-   <link rel="shortcut icon" href="../../favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lost & Found</title>
+    <link rel="shortcut icon" href="../../favicon.svg" type="image/svg+xml">
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"> -->
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <style>
     :root {
-      --orange: #5b141d;
-      --lavender-gray: hsl(341, 51%, 21%);
+      --orange: #cf6a1c;
+      --lavender-gray: hsl(340, 83%, 43%);
       --background: #fdfdfd;
       --light-orange: #885060;
       --border-radius: 10px;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom right, var(--lavender-gray), var(--light-orange));
       margin: 0;
       padding: 20px;
       color: #333;
@@ -28,13 +38,18 @@
       color: white;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .table-wrapper {
+      overflow-x: auto;
       margin-top: 30px;
       background-color: #fff;
       border-radius: var(--border-radius);
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.461);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
     }
 
     th, td {
@@ -57,7 +72,7 @@
       background: #fff;
       padding: 30px;
       border-radius: var(--border-radius);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(145, 89, 89, 0.555);
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
@@ -72,7 +87,7 @@
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: 1px solid #bc6c26;
       border-radius: 6px;
       font-size: 16px;
     }
@@ -89,63 +104,95 @@
     }
 
     form button:hover {
-      background-color: #e85c00;
+      background-color: #c41840;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      .form-section {
+        padding: 20px;
+      }
+
+      form input, form textarea {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1, h2 {
+        font-size: 22px;
+      }
+
+      form button {
+        width: 100%;
+      }
     }
   </style>
-</head>
-<body>
+  </head>
+  <body>
+    
+    <ion-icon name="chatbox"></ion-icon>
+    <h1 style="color: #333; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">LOST AND FOUND</h1>
+    <div class="table-wrapper" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+      <table>
+        <thead>
+          <tr>
+            <th>ITEM DESC</th>
+            <th>LOST DATE</th>
+            <th>FOUND DATE</th>
+            <th>PHONE NO.</th>
+            <th>STATUS</th>
+            <th>LOCATION LOST</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Black Wallet</td>
+            <td>2025-08-01</td>
+            <td>-</td>
+            <td>0312-XXXXXXX</td>
+            <td>Lost</td>
+            <td>Library</td>
+          </tr>
+          <tr>
+            <td>Water Bottle</td>
+            <td>2025-08-04</td>
+            <td>2025-08-05</td>
+            <td>0321-XXXXXXX</td>
+            <td>Found</td>
+            <td>Sports Complex</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <h1>Lost & Found</h1>
+    <div class="form-section">
+      <h2>REPORT A LOST/FOUND ITEM</h2>
+      <form id="lostItemForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="text" name="item_name" placeholder="Item Name" required />
+        <input type="text" name="email" placeholder="Your Email" required />
+        <input type="date" name="lost_date" required />
+        <input type="text" name="location" placeholder="Lost Near (Location)"
+          required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Item Name</th>
-        <th>Lost Date</th>
-        <th>Found Date</th>
-        <th>Phone Number</th>
-        <th>Status</th>
-        <th>Location Lost</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Black Wallet</td>
-        <td>2025-08-01</td>
-        <td>-</td>
-        <td>0312-XXXXXXX</td>
-        <td>Lost</td>
-        <td>Library</td>
-      </tr>
-      <tr>
-        <td>Water Bottle</td>
-        <td>2025-08-04</td>
-        <td>2025-08-05</td>
-        <td>0321-XXXXXXX</td>
-        <td>Found</td>
-        <td>Sports Complex</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="form-section">
-    <h2>REPORT A LOST/FOUND ITEM</h2>
-    <form id="lostItemForm">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="item_name" placeholder="Item Name" required />
-      <input type="text" name="email" placeholder="your email" required />
-      <input type="date" name="lost_date" required />
-      <input type="text" name="location" placeholder="Lost Near (Location)" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-
-  <!-- EmailJS -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
+    <!-- EmailJS -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
     (function(){
-      emailjs.init("NeZcL5sRrffoGTfry"); // Replace with your EmailJS user ID
+      emailjs.init("NeZcL5sRrffoGTfry");
     })();
 
     document.getElementById('lostItemForm').addEventListener('submit', function(e) {
@@ -159,5 +206,5 @@
         });
     });
   </script>
-</body>
+  </body>
 </html>
