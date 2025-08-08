@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Service Form - GIKI Central</title>
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service Form - GIKI Central</title>
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <style>
+    * {
+  box-sizing: border-box;
+}
+
     :root {
-      --primary-color: #800020;
+      --primary-color: #cd4b0f;
       --bg-color: #f9f3f3;
       --text-color: #333;
       --white: #ffffff;
-      --gray: #ccc;
+      --gray: #cacaca;
     }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #ffe6e6, #fce4ec);
       color: var(--text-color);
     }
 
@@ -74,7 +78,7 @@
     }
 
     button:hover {
-      background: #a52a2a;
+      background: #ed317c;
     }
 
     .sample-button {
@@ -105,104 +109,129 @@
     }
 
     @media (max-width: 600px) {
-      .form-container {
-        margin: 10% 20px;
-        padding: 20px;
-      }
-    }
+  .form-container {
+    margin: 10% 10px;
+    padding: 20px;
+  }
+
+  input, textarea, select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .popup {
+    width: 90%;
+    font-size: 14px;
+    padding: 20px;
+  }
+}
+
   </style>
-</head>
-<body>
+  </head>
+  <body>
 
-<div class="form-container">
-  <h2>Request a Service</h2>
-  <form id="serviceForm">
-    <label for="service">Choose Service</label>
-    <select id="service" name="service" required>
-      <option value="" disabled selected>Select a service</option>
-      <option value="cv">CV / Portfolio</option>
-      <option value="project">Project Help</option>
-      <option value="event">Event & Campaign Promotions</option>
-      <option value="news">Campus News</option>
-      <option value="custom">Custom Help</option>
-    </select>
+    <div class="form-container">
+      <h2>Request a Service</h2>
+      <form id="serviceForm">
+        <label for="service">Choose Service</label>
+        <select id="service" name="service" required>
+          <option value disabled selected>Select a service</option>
+          <option value="cv">CV / Portfolio</option>
+          <option value="project">Project Help</option>
+          <option value="event">Event & Campaign Promotions</option>
+          <option value="news">Campus News</option>
+          <option value="custom">Custom Help</option>
+        </select>
 
-    <div id="cvFields" class="hidden">
-      <label>Name</label>
-      <input type="text" name="name">
+        <div id="cvFields" class="hidden">
+          <label>Name</label>
+          <input type="text" name="name">
 
-      <label>WhatsApp Number</label>
-      <input type="text" name="whatsapp">
+          <label>WhatsApp Number</label>
+          <input type="text" name="whatsapp">
 
-      <label>Email</label>
-      <input type="email" name="email">
+          <label>Email</label>
+          <input type="email" name="email">
+        </div>
+
+        <div id="projectFields" class="hidden">
+          <label>Project Domain</label>
+          <input type="text" name="project_domain">
+
+          <label>Required Help</label>
+          <textarea name="required_help" rows="4"></textarea>
+
+          <label>Email</label>
+          <input type="email" name="email">
+
+          <label>Phone Number</label>
+          <input type="text" name="phone">
+        </div>
+
+        <div id="eventFields" class="hidden">
+          <label>Event Name</label>
+          <input type="text" name="event_name">
+
+          <label>Society Name</label>
+          <input type="text" name="society_name">
+
+          <label>Phone Number for Ticketing</label>
+          <input type="text" name="ticket_phone">
+
+          <label>Email</label>
+          <input type="email" name="email">
+
+          <label>Details of Event</label>
+          <textarea name="event_details" rows="4"></textarea>
+        </div>
+
+        <div id="newsFields" class="hidden">
+          <label>Title</label>
+          <input type="text" name="news_title">
+
+          <label>Issue</label>
+          <textarea name="issue" rows="4"></textarea>
+
+          <label>Email (Optional)</label>
+          <input type="email" name="news_email">
+
+          <label>Phone Number (Optional)</label>
+          <input type="text" name="news_phone">
+        </div>
+
+        <div id="customFields" class="hidden">
+          <label>Your Custom Request</label>
+          <textarea name="custom_request" rows="4"
+            placeholder="Describe your request..."></textarea>
+        </div>
+
+        <button type="submit">Submit Request</button>
+      </form>
     </div>
 
-    <div id="projectFields" class="hidden">
-      <label>Project Domain</label>
-      <input type="text" name="project_domain">
+    <div id="popup" class="popup"></div>
 
-      <label>Required Help</label>
-      <textarea name="required_help" rows="4"></textarea>
+    <script type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+  (function () {
+    emailjs.init("9HS0t_w-Q6VkQ3ZM8");
+  })();
+</script>
 
-      <label>Email</label>
-      <input type="email" name="email">
-
-      <label>Phone Number</label>
-      <input type="text" name="phone">
-    </div>
-
-    <div id="eventFields" class="hidden">
-      <label>Event Name</label>
-      <input type="text" name="event_name">
-
-      <label>Society Name</label>
-      <input type="text" name="society_name">
-
-      <label>Phone Number for Ticketing</label>
-      <input type="text" name="ticket_phone">
-
-      <label>Email</label>
-      <input type="email" name="email">
-
-      <label>Details of Event</label>
-      <textarea name="event_details" rows="4"></textarea>
-    </div>
-
-    <div id="newsFields" class="hidden">
-      <label>Title</label>
-      <input type="text" name="news_title">
-
-      <label>Issue</label>
-      <textarea name="issue" rows="4"></textarea>
-
-      <label>Email (Optional)</label>
-      <input type="email" name="news_email">
-
-      <label>Phone Number (Optional)</label>
-      <input type="text" name="news_phone">
-    </div>
-
-    <div id="customFields" class="hidden">
-      <label>Your Custom Request</label>
-      <textarea name="custom_request" rows="4" placeholder="Describe your request..."></textarea>
-    </div>
-
-    <button type="submit">Submit Request</button>
-
-    <div class="sample-button hidden" id="sampleLink">
-      <a href="#" target="_blank">View Samples</a>
-    </div>
-  </form>
-</div>
-
-<div id="popup" class="popup"></div>
-
-<script>
+    <script>
   const serviceSelect = document.getElementById("service");
   const form = document.getElementById("serviceForm");
   const popup = document.getElementById("popup");
-  const sampleLink = document.getElementById("sampleLink");
 
   const allFields = {
     cv: document.getElementById("cvFields"),
@@ -228,27 +257,35 @@
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const value = serviceSelect.value;
 
-    let message = "Thanks! You will be contacted soon.";
-    if (value === "project") {
-      message = "Your request will be posted soon on our freelance page.";
-    } else if (value === "event") {
-      message = "Your event promotion request has been received.";
-    } else if (value === "news") {
-      message = "Your campus news submission has been noted.";
-    }
+    // Send form using EmailJS
+    emailjs.sendForm("service_jz5o2xl", "template_3307eka", form)
+      .then(() => {
+        const value = serviceSelect.value;
+        let message = "Thanks! You will be contacted soon.";
+        if (value === "project") {
+          message = "Your request will be posted soon on our freelance page.";
+        } else if (value === "event") {
+          message = "Your event promotion request has been received. you will be contacted soon";
+        } else if (value === "news") {
+          message = "Your campus news submission has been noted. you will be contacted soon";
+        }
 
-    popup.innerText = message;
-    popup.style.display = "block";
-    setTimeout(() => {
-      popup.style.display = "none";
-      form.reset();
-      Object.values(allFields).forEach(f => f.classList.add("hidden"));
-      sampleLink.classList.add("hidden");
-    }, 3500);
+        popup.innerText = message;
+        popup.style.display = "block";
+
+        setTimeout(() => {
+          popup.style.display = "none";
+          form.reset();
+          Object.values(allFields).forEach(f => f.classList.add("hidden"));
+          sampleLink.classList.add("hidden");
+        }, 3500);
+      }, (error) => {
+        console.error("EmailJS error:", error);
+        alert("Something went wrong. Please try again later.");
+      });
   });
 </script>
 
-</body>
+  </body>
 </html>
