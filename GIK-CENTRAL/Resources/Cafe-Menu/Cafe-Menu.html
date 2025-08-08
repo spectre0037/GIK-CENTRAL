@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <link rel="shortcut icon" href="../../favicon.svg" type="image/svg+xml">
   <meta charset="UTF-8">
   <title>GIKI CAFE MENU</title>
+  <link rel="shortcut icon" href="../../favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
-      --sunset-orange: #8d1f3e;
-      --lavender-gray: #710f33;
+      --sunset-orange: #b7264f;
+      --lavender-gray: #db5b17;
       --white: #ffffff;
       --border-radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(90deg, var(--sunset-orange), var(--lavender-gray));
+      background-color: #d8d5d584;
       color: #333;
       min-height: 100vh;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
-      transition: background 0.5s ease;
     }
 
     h1 {
-      color: #e6e0e0;
+      color: #000000af;
       font-size: 2.5rem;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     p.note {
-      color: #adabab;
+      color: #b70404;
       margin-bottom: 30px;
       font-style: italic;
       font-size: 0.95rem;
+      text-align: center;
     }
 
     .menu-table {
-      width: 95%;
+      width: 100%;
       max-width: 600px;
       background-color: rgba(255, 255, 255, 0.95);
       border-radius: var(--border-radius);
@@ -66,14 +72,39 @@
       transition: background 0.3s ease-in-out;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+      }
+
+      p.note {
+        font-size: 0.9rem;
+        padding: 0 10px;
       }
 
       .menu-table th, .menu-table td {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .menu-table th, .menu-table td {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+      }
+
+      .menu-table {
+        width: 100%;
+        font-size: 0.85rem;
+      }
+
+      body {
+        padding: 20px 10px;
       }
     }
   </style>
@@ -81,13 +112,10 @@
 <body>
 
   <h1>GIKI CAFE MENU</h1>
-  <p class="note">These are temporary values and will be updated on <strong>2nd September</strong>.</p>
+  <p class="note">These are previous semmester rates and will be updated on <strong>2nd September</strong>.</p>
 
   <table class="menu-table">
-    <tr>
-      <th>Item</th>
-      <th>Price (PKR)</th>
-    </tr>
+    <tr><th>Item</th><th>Price (PKR)</th></tr>
     <tr><td>Chicken Biryani</td><td>240 PKR</td></tr>
     <tr><td>Sada Biryani</td><td>150 PKR</td></tr>
     <tr><td>Chicken Pulao</td><td>240 PKR</td></tr>
@@ -95,8 +123,8 @@
     <tr><td>Chicken handi</td><td>240 PKR</td></tr>
     <tr><td>Macaroni/pasta</td><td>240 PKR</td></tr>
     <tr><td>Chicken Patty Burger</td><td>220</td></tr>
-    <tr><td>Sabzi/Daal</td><td>80PKR</td></tr>
-    <tr><td>Chicken Piece(Tikka)</td><td>250PKR</td></tr>
+    <tr><td>Sabzi/Daal</td><td>80 PKR</td></tr>
+    <tr><td>Chicken Piece (Tikka)</td><td>250 PKR</td></tr>
     <tr><td>Kabab</td><td>80</td></tr>
     <tr><td>Roti</td><td>12</td></tr>
     <tr><td>Paratha</td><td>40</td></tr>

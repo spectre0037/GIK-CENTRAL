@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GIKI Food Central</title>
+
+  <!-- Swiper.js CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f6f6f6;
+    }
+
+    header {
+      background-color: #800020;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    section {
+      padding: 2rem;
+      background-color: white;
+      margin: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #800020;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .swiper-container {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .actions {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .whatsapp-button {
+      background-color: #25D366;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-right: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1ebe5d;
+    }
+
+    .phone {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    @media screen and (max-width: 600px) {
+      section {
+        margin: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>GIKI Food Central</header>
+
+  <!-- RAJU Section -->
+  <section>
+    <h2>Raju</h2>
+    <div class="swiper-container rajuSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Raju+Menu+1" alt="Raju Menu 1" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Raju+Menu+2" alt="Raju Menu 2" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Raju+Menu+3" alt="Raju Menu 3" /></div>
+      </div>
+    </div>
+    <div class="actions">
+      <a href="https://wa.me/923001112233" target="_blank">
+        <button class="whatsapp-button"><i class="fab fa-whatsapp"></i> Join WhatsApp</button>
+      </a>
+      <span class="phone"><i class="fas fa-phone"></i> +92 300 1112233</span>
+    </div>
+  </section>
+
+  <!-- AYAAN Section -->
+  <section>
+    <h2>Ayaan</h2>
+    <div class="swiper-container ayaanSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Ayaan+Menu+1" alt="Ayaan Menu 1" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Ayaan+Menu+2" alt="Ayaan Menu 2" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Ayaan+Menu+3" alt="Ayaan Menu 3" /></div>
+      </div>
+    </div>
+    <div class="actions">
+      <a href="https://wa.me/923004445566" target="_blank">
+        <button class="whatsapp-button"><i class="fab fa-whatsapp"></i> Join WhatsApp</button>
+      </a>
+      <span class="phone"><i class="fas fa-phone"></i> +92 300 4445566</span>
+    </div>
+  </section>
+
+  <!-- HOT & SPICY Section -->
+  <section>
+    <h2>Hot & Spicy</h2>
+    <div class="swiper-container spicySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Hot+%26+Spicy+Menu+1" alt="Hot & Spicy Menu 1" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Hot+%26+Spicy+Menu+2" alt="Hot & Spicy Menu 2" /></div>
+        <div class="swiper-slide"><img src="https://via.placeholder.com/600x300?text=Hot+%26+Spicy+Menu+3" alt="Hot & Spicy Menu 3" /></div>
+      </div>
+    </div>
+    <div class="actions">
+      <a href="https://wa.me/923007778899" target="_blank">
+        <button class="whatsapp-button"><i class="fab fa-whatsapp"></i> Join WhatsApp</button>
+      </a>
+      <span class="phone"><i class="fas fa-phone"></i> +92 300 7778899</span>
+    </div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const rajuSwiper = new Swiper('.rajuSwiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+    });
+
+    const ayaanSwiper = new Swiper('.ayaanSwiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+    });
+
+    const spicySwiper = new Swiper('.spicySwiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+    });
+  </script>
+</body>
+</html>
