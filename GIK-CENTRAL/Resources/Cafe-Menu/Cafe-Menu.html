@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GIKI CAFE MENU</title>
+  <style>
+    :root {
+      --sunset-orange: #8d1f3e;
+      --lavender-gray: #710f33;
+      --white: #ffffff;
+      --border-radius: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(90deg, var(--sunset-orange), var(--lavender-gray));
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      transition: background 0.5s ease;
+    }
+
+    h1 {
+      color: #e6e0e0;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p.note {
+      color: #adabab;
+      margin-bottom: 30px;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .menu-table {
+      width: 95%;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    .menu-table th, .menu-table td {
+      padding: 12px 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .menu-table th {
+      background-color: var(--lavender-gray);
+      color: #e0dede;
+    }
+
+    .menu-table tr:hover {
+      background-color: #fdf3e7;
+      transition: background 0.3s ease-in-out;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .menu-table th, .menu-table td {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>GIKI CAFE MENU</h1>
+  <p class="note">These are temporary values and will be updated on <strong>2nd September</strong>.</p>
+
+  <table class="menu-table">
+    <tr>
+      <th>Item</th>
+      <th>Price (PKR)</th>
+    </tr>
+    <tr><td>Chicken Burger</td><td>250</td></tr>
+    <tr><td>Beef Burger</td><td>270</td></tr>
+    <tr><td>Zinger Burger</td><td>300</td></tr>
+    <tr><td>Club Sandwich</td><td>280</td></tr>
+    <tr><td>Fries</td><td>120</td></tr>
+    <tr><td>Shawarma</td><td>200</td></tr>
+    <tr><td>Pizza Slice</td><td>180</td></tr>
+    <tr><td>Cold Drink (Can)</td><td>80</td></tr>
+    <tr><td>Mineral Water</td><td>50</td></tr>
+    <tr><td>Tea</td><td>40</td></tr>
+    <tr><td>Coffee</td><td>60</td></tr>
+  </table>
+
+  <p class="note">Complain section will be added soon.</p>
+
+</body>
+</html>

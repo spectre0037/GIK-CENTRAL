@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GIKI Mess Menu</title>
+  <style>
+    :root {
+      --sunset-orange: #8d1f3e;
+      --lavender-gray: #710f33;
+      --white: #ffffff;
+      --border-radius: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(90deg, var(--sunset-orange), var(--lavender-gray));
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      transition: background 0.5s ease;
+    }
+
+    h1 {
+      color: #e6e0e0;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p.note {
+      color: #adabab;
+      margin-bottom: 30px;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      margin-bottom: 25px;
+    }
+
+    button {
+      background-color: var(--white);
+      color: var(--sunset-orange);
+      border: 1px solid var(--sunset-orange);
+      padding: 10px 18px;
+      border-radius: var(--border-radius);
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--sunset-orange);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    .menu-table {
+      width: 95%;
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    .menu-table th, .menu-table td {
+      padding: 12px 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .menu-table th {
+      background-color: var(--lavender-gray);
+      color: #9b9a9a;
+    }
+
+    .menu-table tr:hover {
+      background-color: #fdf3e7;
+      transition: background 0.3s ease-in-out;
+    }
+
+    #date-container {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      button {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+
+      .menu-table th, .menu-table td {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>GIKI Mess Menu</h1>
+  <p class="note">These are temporary values and will be updated on <strong>2nd September</strong>.</p>
+
+  <div class="btn-group">
+    <button onclick="showWeeklyMenu()">Weekly Menu</button>
+    <button onclick="showDailyMenu()">Today’s Menu</button>
+  </div>
+  
+  
+  <div id="date-container"></div>
+  
+  <table class="menu-table" id="menu">
+      <!-- Menu will be injected here -->
+    </table>
+    <p class="note">Complain section will be added soon</strong>.</p>
+
+  <script>
+    const weeklyMenu = [
+      { day: 'Monday', breakfast: 'Paratha, Egg', lunch: 'Chicken Biryani', dinner: 'Daal Chawal' },
+      { day: 'Tuesday', breakfast: 'Halwa Puri', lunch: 'Korma + Naan', dinner: 'Aloo Qeema' },
+      { day: 'Wednesday', breakfast: 'Toast + Jam', lunch: 'Chicken Pulao', dinner: 'Mix Sabzi' },
+      { day: 'Thursday', breakfast: 'Omelette, Paratha', lunch: 'Chana Chaat', dinner: 'Bhindi Gosht' },
+      { day: 'Friday', breakfast: 'French Toast', lunch: 'Chicken Burger', dinner: 'Chicken Curry' },
+      { day: 'Saturday', breakfast: 'Halwa Puri', lunch: 'Rice + Kabab', dinner: 'Egg Curry' },
+      { day: 'Sunday', breakfast: 'Pancakes', lunch: 'Shami Burger', dinner: 'Pulao' },
+    ];
+
+    function renderMenu(data) {
+      const table = document.getElementById('menu');
+      const isDaily = data.length === 1;
+      let html = `
+        <tr>
+          <th>${isDaily ? 'Day' : 'Day'}</th>
+          <th>Breakfast</th>
+          <th>Lunch</th>
+          <th>Dinner</th>
+        </tr>
+      `;
+      data.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.day}</td>
+            <td>${item.breakfast}</td>
+            <td>${item.lunch}</td>
+            <td>${item.dinner}</td>
+          </tr>
+        `;
+      });
+      table.innerHTML = html;
+    }
+
+    function showWeeklyMenu() {
+      document.getElementById('date-container').style.display = 'none';
+      renderMenu(weeklyMenu);
+    }
+
+    function showDailyMenu() {
+      const todayIndex = new Date().getDay(); // 0 (Sun) to 6 (Sat)
+      const correctedIndex = todayIndex === 0 ? 6 : todayIndex - 1; // adjust for Sunday last
+      const today = weeklyMenu[correctedIndex];
+      renderMenu([today]);
+
+      const date = new Date();
+      const formattedDate = date.toDateString();
+      document.getElementById('date-container').innerText = `Today: ${formattedDate}`;
+      document.getElementById('date-container').style.display = 'block';
+    }
+
+    // Load weekly by default
+    showWeeklyMenu();
+  </script>
+
+</body>
+</html>

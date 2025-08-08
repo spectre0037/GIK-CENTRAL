@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lost & Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #5b141d;
+      --lavender-gray: hsl(341, 51%, 21%);
+      --background: #fdfdfd;
+      --light-orange: #885060;
+      --border-radius: 10px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, var(--lavender-gray), var(--light-orange));
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: var(--lavender-gray);
+      color: #ffffff;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .form-section {
+      margin-top: 50px;
+      background: #fff;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-section h2 {
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    form button {
+      background-color: var(--orange);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #e85c00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lost & Found</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Lost Date</th>
+        <th>Found Date</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Location Lost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Black Wallet</td>
+        <td>2025-08-01</td>
+        <td>-</td>
+        <td>0312-XXXXXXX</td>
+        <td>Lost</td>
+        <td>Library</td>
+      </tr>
+      <tr>
+        <td>Water Bottle</td>
+        <td>2025-08-04</td>
+        <td>2025-08-05</td>
+        <td>0321-XXXXXXX</td>
+        <td>Found</td>
+        <td>Sports Complex</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-section">
+    <h2>REPORT A LOST ITEM</h2>
+    <form id="lostItemForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="text" name="item_name" placeholder="Item Name" required />
+      <input type="text" name="email" placeholder="your email" required />
+      <input type="date" name="lost_date" required />
+      <input type="text" name="location" placeholder="Lost Near (Location)" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("NeZcL5sRrffoGTfry"); // Replace with your EmailJS user ID
+    })();
+
+    document.getElementById('lostItemForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_8tct5dm', 'template_tuybl5x', this)
+        .then(function() {
+          alert('Lost item reported successfully!');
+          document.getElementById("lostItemForm").reset();
+        }, function(error) {
+          alert('Error: ' + JSON.stringify(error));
+        });
+    });
+  </script>
+</body>
+</html>
