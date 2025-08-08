@@ -42,7 +42,7 @@
   position: absolute;
   height: 100%;
   width: 4px;
-  background: hsl(25, 100%, 50%);
+  background: hsl(0, 0%, 100%);
   left: 50%;
   top: 1.25rem;
   transform: translateX(-50%);
